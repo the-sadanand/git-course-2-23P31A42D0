@@ -1,0 +1,1 @@
+* * * * * cd /app && /usr/local/bin/node scripts/log_2fa_cron.js >> /cron/last_code.txt 2>&1

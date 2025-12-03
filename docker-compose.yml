@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pki-2fa
+    ports:
+      - "8080:8080"
+
+    environment:
+      TZ: "UTC"
+
+    volumes:
+      # Persistent data directories
+      - seed-data:/data
+      - cron-output:/cron
+
+      # Key files (mounted read-only)
+      - ./private.pem:/app/private.pem:ro
+      - ./public.pem:/app/public.pem:ro
+      # Add more only if needed:
+      # - ./student_private.pem:/app/student_private.pem:ro
+      # - ./student_public.pem:/app/student_public.pem:ro
+      # - ./instructor_public.pem:/app/instructor_public.pem:ro
+
+    restart: unless-stopped
+
+volumes:
+  seed-data:
+  cron-output:

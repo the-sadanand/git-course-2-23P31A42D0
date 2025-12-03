@@ -1,0 +1,4 @@
+# Run every minute. Write stdout to /cron/last_code.txt (append).
+# Errors are left on stderr (so they appear in docker logs).
+* * * * * /usr/bin/node /app/scripts/generate_totp.js >> /cron/last_code.txt
+# End with a newline
